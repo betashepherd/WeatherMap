@@ -1,0 +1,138 @@
+@CHARSET "UTF-8";
+/* 自定义控件样式 */
+div.districtWeatherControl {
+	position: absolute;
+	/* 设置控件离地图的左边界的偏移量*/
+	right: 10px;
+	/* 设置控件离地图上边界的偏移量*/
+	top: 10px;
+	/* 设置控件在地图上显示*/
+	czIndex: 300;
+	padding: 4px;
+}
+
+div.districtWeatherControl button {
+	cursor: pointer;
+	background-color: #fff;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	color: #000;
+	font-weight: bold;
+	padding: 5px 10px 6px 7px;
+}
+
+div.districtWeatherControl button {
+	cursor: pointer;
+	background-color: #fff;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	color: #000;
+	font-weight: bold;
+	padding: 5px 10px 6px 7px;
+}
+
+div.districtWeatherControl button.active {
+	background-color: #3385ff;
+	color: #fff;
+}
+
+/* 自定义天气状况Marker样式 */
+div.cityWeatherMarker {
+	position: relative;
+	z-index: 100;
+	border: 1px solid #BCBCBC;
+	box-shadow: 0 0 10px #B7B6B6;
+	border-radius: 8px;
+	background-color: #FFF;
+	transition-duration: 0.25s;
+	white-space: nowrap;
+}
+
+div.cityWeatherMarker:hover {
+	box-shadow: 0px 0px 15px #0CF;
+}
+
+div.cityWeatherMarker-name {
+	position: relative;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-bottom: 1px solid #CCC;
+	border-radius: 5px 5px 0 0;
+	color: #333333;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 0 10px;
+	margin-bottom: 8px;
+}
+
+div.cityWeatherMarker img {
+	padding: 5px;
+	display: block;
+	margin: auto;
+}
+
+/* 自定义空气质量Marker样式 */
+div.cityPm25Marker {
+	position: relative;
+	z-index: 200;
+	border: 1px solid #BCBCBC;
+	box-shadow: 0 0 10px #B7B6B6;
+	border-radius: 8px;
+	background: none repeat scroll 0 0 #F9F9F9;
+	transition-duration: 0.25s;
+	white-space: nowrap;
+	height: auto !important;
+	min-height: 22px;
+}
+
+div.cityPm25Marker:hover {
+	box-shadow: 0px 0px 15px #0CF;
+}
+
+span.cityPm25Marker-name {
+	position: relative;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-radius: 5px 0 0 5px;
+	color: #333333;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px 10px;
+}
+
+span.cityPm25Marker-value {
+	position: relative;
+	border-radius: 0 5px 5px 0;
+	color: #FFF;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+
+/* pm2.5样式 */
+.excellent {
+	background-color: #5dd50b;
+}
+
+.good {
+	background-color: #e8c719;
+}
+
+.lightPollution {
+	background-color: #f46027;
+}
+
+.moderatePollution {
+	background-color: #fc081f;
+}
+
+.highPollution {
+	background-color: #75137e;
+}
+
+.seriousPollution {
+	background-color: #000;
+}

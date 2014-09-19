@@ -1,0 +1,96 @@
+<!-- 使用最新的符合HTML5规范的文档声明 -->
+<!DOCTYPE HTML>
+<html>
+<head>
+<!-- 使页面更好的在移动平台上展示 -->
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>高德地图 - 天气插件 - 演示环境</title>
+<!-- 设置样式，使地图充满整个浏览器窗口 -->
+<style type="text/css">
+html {
+	height: 100%
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+#container {
+	height: 100%
+}
+</style>
+<!-- 插件样式文件 -->
+<link rel="stylesheet" href="./weather-amap.css" type="text/css">
+<!-- 引入高德地图JavaScript API文件 -->
+<script type="text/javascript"
+	src="http://webapi.amap.com/maps?v=1.3&key=19023f3dda84ca58b0b0838aed089745"></script>
+<!-- JSON格式的数据，仅供测试 -->
+<script type="text/javascript" src="./test-data.js"></script>
+<!-- 引入插件js文件 -->
+<script type="text/javascript" src="./weather-amap.js"></script>
+
+<script type="text/javascript">
+	var mapObj;
+	function mapInit() {
+		// 地图对象
+		mapObj = new AMap.Map("container");
+
+		// 加载工具条
+		mapObj.plugin([ "AMap.ToolBar" ], function() {
+			var tool = new AMap.ToolBar();
+			mapObj.addControl(tool);
+		});
+
+		// 定义配置项，可选
+		var config = {
+			isWeatherControlVisible : true,
+			isPm25ControlVisible : true,
+			isWeatherMarkerVisible : true,
+			isPm25MarkerVisible : true
+		};
+
+		// 新建自定义插件对象 
+		var districtWeather = new AMap.DistrictWeather(mapObj,
+				getWeatherDataCallback, getPm25DataCallback, config);
+		// 地图上添加插件
+		mapObj.addControl(districtWeather);
+	}
+
+	// 定义查询天气信息的回调函数，返回 WeatherData 对象
+	function getWeatherDataCallback(cityName) {
+		var weatherData = null;
+		for ( var i = 0, length = testDatas.length; i < length; i++) {
+			if (testDatas[i].results[0].currentCity == cityName) {
+				var dayPictureUrl = testDatas[i].results[0].weather_data[0].dayPictureUrl;
+				var weather = testDatas[i].results[0].weather_data[0].weather;
+				var wind = testDatas[i].results[0].weather_data[0].wind;
+				var temperature = testDatas[i].results[0].weather_data[0].temperature;
+				weatherData = new WeatherData(dayPictureUrl, weather, wind,
+						temperature);
+				break;
+			}
+		}
+		return weatherData;
+	}
+
+	// 定义查询pm2.5信息的回调函数，返回 Pm25Data 对象
+	function getPm25DataCallback(cityName) {
+		var pm25Data = null;
+		for ( var i = 0, length = testDatas.length; i < length; i++) {
+			if (testDatas[i].results[0].currentCity == cityName) {
+				var pm25 = testDatas[i].results[0].pm25;
+				pm25Data = new Pm25Data(pm25);
+				break;
+			}
+		}
+		return pm25Data;
+	}
+</script>
+</head>
+<body onload="mapInit();">
+	<div id="container"></div>
+</body>
+</html>
